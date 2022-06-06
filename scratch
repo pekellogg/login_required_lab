@@ -1,0 +1,45 @@
+scratch
+-------
+login page #=> handled via SessionsController#new
+- - - - - -
+user enters username (no PW required)
+if login success #=> redirect to welcome page
+if login fail #=> redirect to login until login success
+
+welcome page
+- - - - - - -
+"Hi, #{username}"
+link to secret page
+
+secret page
+- - - - - -
+content & URL #=> DEV'S CHOICE :)
+non-login users #=> redirect to login; NEVER see secrets
+
+
+SessionsController ("resources"/custom routes OK)
+#new
+#create #=> login form handling
+#destroy
+
+ApplicationController
+#current_user
+
+SecretsController ("resources"/custom routes OK)
+#show
+leverage "before_action" #=> prevent route access without login
+
+desired behavior/functionality
+------------------------------
+User
+- - -
+not logged in #=> root redirect to login page
+logged in #=> root welcome page
+
+/
+
+rails g controller Sessions new --no-helper --no-assets --no-test-framework --skip-routes --skip
+rails g controller Secrets show --no-helper --no-assets --no-test-framework --skip-routes --skip
+
+
+
